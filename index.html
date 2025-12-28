@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>4 Axes Dev/Tech Test</title>
+  <meta name="description" content="Descubra seu perfil como desenvolvedor: trade-offs entre entrega vs qualidade, produto vs infra, generalista vs especialista, e solo vs liderança." />
+
+  <!-- Ícone do site (favicon) -->
+  <link rel="icon" type="image/x-icon" href="logo.ico" />
+
+  <!-- Fonte (Google Fonts): Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;750;800&display=swap" rel="stylesheet" />
+
+  <!-- Estilos do projeto -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho fixo (logo + tags do resultado) -->
+  <header>
+    <div class="header-inner">
+      <div class="logo-group">
+        <img src="logo.png" alt="Logo 4 Axes Dev/Tech Test" class="logo-img" />
+        <span class="logo-text">4 Axes Dev/Tech Test</span>
+      </div>
+      <div id="headerTags" class="header-tags" aria-live="polite"></div>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+
+    <!-- === TELA: Início === -->
+    <section id="screenStart" class="screen active" aria-labelledby="startTitle">
+      <div class="card hero-card">
+        <h1 id="startTitle">4 Axes Dev/Tech Test</h1>
+        <p>Descubra seu perfil como desenvolvedor(a) explorando 4 eixos de trade-offs:</p>
+        <ul>
+          <li><strong>Entrega vs Qualidade</strong></li>
+          <li><strong>Produto vs Infra</strong></li>
+          <li><strong>Generalista vs Especialista</strong></li>
+          <li><strong>Solo vs Liderança</strong></li>
+        </ul>
+        <p>Ao final, você verá um <strong>score 0–100</strong> em cada eixo, um gráfico radar e uma interpretação personalizada.</p>
+        <p class="small" style="margin-top:8px;">20 perguntas · ~3 min</p>
+        <div class="btn-row">
+          <button id="btnStart" class="btn primary" aria-label="Iniciar teste">Iniciar Teste</button>
+          <button id="btnViewLast" class="btn secondary" style="display:none" aria-label="Ver resultado salvo anteriormente">Ver último resultado</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- === TELA: Questionário === -->
+    <section id="screenQuiz" class="screen" aria-labelledby="quizTitle">
+      <div class="card quiz-card">
+        <h2 id="quizTitle">Pergunta</h2>
+        <p id="quizSub" class="small"></p>
+
+        <div class="progress-container" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" aria-label="Progresso do questionário">
+          <div class="progress-bar" id="quizProgressBar"></div>
+        </div>
+
+        <p id="questionText" class="question-text"></p>
+
+        <p id="axisHint" class="small muted" style="margin-bottom:8px;"></p>
+
+        <div id="likertGroup" class="likert-group" role="radiogroup" aria-label="Escolha de 1 (discordo) a 5 (concordo)"></div>
+
+        <p id="quizError" class="error-msg" role="alert" aria-live="assertive">Por favor, selecione uma opção para continuar.</p>
+
+        <div class="btn-row">
+          <button id="btnBack" class="btn secondary" aria-label="Voltar à pergunta anterior">Voltar</button>
+          <button id="btnNext" class="btn primary" aria-label="Avançar para a próxima pergunta">Próximo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- === TELA: Resultado === -->
+    <section id="screenResults" class="screen" aria-labelledby="resTitle">
+      <div class="results-container">
+        <h2 id="resTitle">Seu Perfil</h2>
+
+        <div class="results-top">
+          <div class="chart-box card">
+            <canvas id="radar" aria-label="Gráfico radar com os scores de cada eixo"></canvas>
+          </div>
+
+          <div class="profile-box card">
+            <h3 style="margin-bottom:8px;">Tags do perfil</h3>
+            <div id="profileTags" class="profile-tags"></div>
+            <p id="finalRecommendations" class="recs-text" style="margin-top:8px;"></p>
+          </div>
+        </div>
+
+        <div id="axisCards" class="axis-cards" aria-label="Detalhes de cada eixo"></div>
+
+        <p id="savedHint" class="small muted" style="margin-top:10px;"></p>
+
+        <div class="btn-row">
+          <button id="btnRetry" class="btn primary" aria-label="Refazer o teste">Refazer Teste</button>
+          <button id="btnCopy" class="btn secondary" aria-label="Copiar resumo como texto">Copiar Resumo</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast (mensagens rápidas) -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Script principal -->
+  <script src="app.js"></script>
+</body>
+</html>
