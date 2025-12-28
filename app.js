@@ -118,10 +118,39 @@ const AXES = [
       balancedRisk: "Pode assumir demais e ficar sobrecarregado.",
       balancedGrow: "Combine: o que delegar, o que liderar e o que executar.",
     }
+  },
+  {
+    id: "convenience_security",
+    name: "Conveniência/Velocidade vs Segurança/Privacidade",
+    leftLabel: "Conveniência/Velocidade",
+    rightLabel: "Segurança/Privacidade",
+    leftTag: "Conveniência-first",
+    rightTag: "Segurança-first",
+    // ~metade invertida (2/5)
+    questions: [
+      { id: "cs1", text: "Costumo priorizar conveniência/rapidez mesmo que os controles fiquem para depois.", reversed: true },
+      { id: "cs2", text: "Acho que permissões mínimas (least privilege) valem o esforço extra.", reversed: false },
+      { id: "cs3", text: "Logs podem incluir dados sensíveis se ajudarem a debugar mais rápido.", reversed: true },
+      { id: "cs4", text: "Antes de expor uma API, penso em abuso, privacidade e risco.", reversed: false },
+      { id: "cs5", text: "MFA, rotação de secrets e scans fazem parte do 'pronto'.", reversed: false },
+    ],
+    interpret: {
+      leftStrengths: ["Entrega muito rápida, pouco atrito para lançar", "Foco em remover fricção para times e usuários"],
+      leftRisk: "Pode abrir brechas de segurança/privacidade e gerar incidentes ou não-conformidade.",
+      leftGrow: "Defina um mínimo viável de segurança (MFA, least privilege, secrets seguros) já na primeira entrega.",
+
+      rightStrengths: ["Protege dados e reduz superfície de ataque", "Menos risco de incidentes e conformidade mais fácil"],
+      rightRisk: "Pode aumentar fricção e atrasar releases ou experimentos.",
+      rightGrow: "Crie padrões leves (templates/policies) para não travar o fluxo de entrega.",
+
+      balancedStrengths: ["Entrega com controles essenciais por padrão", "Boa leitura de risco x velocidade"],
+      balancedRisk: "Pode subestimar exceções (picos de risco) ou burocratizar demais",
+      balancedGrow: "Use checklists curtos por tipo de entrega (API pública, dados sensíveis, acesso interno).",
+    }
   }
 ];
 
-// Monta um fluxo único com as 20 perguntas (na ordem em que aparecem no quiz).
+// Monta um fluxo único com todas as perguntas (na ordem em que aparecem no quiz).
 function buildQuestionFlow() {
   const flow = [];
   for (const axis of AXES) {
@@ -155,7 +184,7 @@ const state = {
 };
 
 // Chave do localStorage (versionada pra não conflitar com futuras mudanças)
-const STORAGE_KEY = "fourAxesDevTechTest:lastResult:v1";
+const STORAGE_KEY = "fiveAxesDevTechTest:lastResult:v1";
 
 // ---------------------------
 // UTILITÁRIOS
@@ -286,7 +315,7 @@ function computeResults() {
 
 function buildCopySummary(result) {
   const lines = [];
-  lines.push("4 Axes Dev/Tech Test - Resumo");
+  lines.push("5 Axes Dev/Tech Test - Resumo");
   lines.push(`Data: ${result.computedAt}`);
   lines.push("");
 
