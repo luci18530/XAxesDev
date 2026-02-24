@@ -854,34 +854,183 @@ canvas {
   .axis-cards {
     grid-template-columns: 1fr;
   }
-  
+
+  header {
+    padding: 10px 0;
+  }
+
+  .header-inner {
+    padding: 0 10px;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
   main {
-    padding: 16px 12px;
+    padding: 12px 10px;
   }
-  
+
   .card {
-    padding: 20px 18px;
+    padding: 18px 14px;
   }
-  
-  h1 {
-    font-size: 22px;
+
+  .quiz-card,
+  .quiz-card.card {
+    padding: 16px 14px;
+    min-height: auto;
   }
-  
-  .btn {
+
+  #quizSub {
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .progress-container {
+    margin: 10px 0 14px;
+  }
+
+  .question-text {
+    font-size: 26px;
+    margin: 16px 0 14px;
+    line-height: 1.2;
+  }
+
+  #axisHint {
+    font-size: 15px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .likert-group {
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .choice {
+    width: 100%;
+    min-height: 60px;
+    padding: 12px 10px;
+  }
+
+  .choice .txt {
     width: 100%;
   }
-  
+
+  .choice .d {
+    font-size: 18px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .error-msg {
+    margin: 8px 0;
+    font-size: 14px;
+  }
+
+  .hero-card {
+    padding: 20px 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .hero-card p {
+    font-size: 17px;
+    line-height: 1.55;
+    margin: 12px 0;
+  }
+
+  .hero-card ul {
+    margin: 14px 0 16px 22px;
+  }
+
+  .hero-card li {
+    margin: 8px 0;
+    line-height: 1.45;
+    font-size: 17px;
+  }
+
+  .results-container h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .chart-box,
+  .profile-box {
+    padding: 18px 14px;
+  }
+
+  .recs-text {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .axis-card {
+    padding: 20px 16px;
+  }
+
+  .axis-card h3 {
+    font-size: 22px;
+  }
+
+  .axis-card .score {
+    font-size: 30px;
+  }
+
+  .axis-card .tendency {
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    font-size: 17px;
+  }
+
   .btn-row {
     flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 10px;
   }
-  
+
   .logo-text {
     font-size: 14px;
   }
-  
+
   .logo-img {
     width: 28px;
     height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .question-text {
+    font-size: 22px;
+  }
+
+  .choice .d {
+    font-size: 16px;
+  }
+
+  h1,
+  .hero-card h1 {
+    font-size: 24px;
+  }
+
+  .hero-card p,
+  .hero-card li {
+    font-size: 16px;
+  }
+
+  .results-container h2 {
+    font-size: 26px;
   }
 }
 
