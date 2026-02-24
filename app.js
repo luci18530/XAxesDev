@@ -341,6 +341,9 @@ function buildCopySummary(result) {
 
 function setScreen(name) {
   state.screen = name;
+  document.body.classList.toggle("quiz-mode", name === "quiz");
+  document.body.classList.toggle("start-mode", name === "start");
+  document.body.classList.toggle("results-mode", name === "results");
   document.getElementById("screenStart").classList.toggle("active", name === "start");
   document.getElementById("screenQuiz").classList.toggle("active", name === "quiz");
   document.getElementById("screenResults").classList.toggle("active", name === "results");
@@ -433,17 +436,19 @@ function updateNavButtons() {
 
 function renderQuiz() {
   const q = QUESTION_FLOW[state.qIndex];
+  const currentQuestion = state.qIndex + 1;
   document.getElementById("quizTitle").textContent = "Pergunta";
-  document.getElementById("quizSub").textContent = `Pergunta ${state.qIndex + 1} de ${QUESTION_FLOW.length}`;
+  document.getElementById("quizSub").textContent = `Pergunta ${currentQuestion} de ${QUESTION_FLOW.length}`;
   document.getElementById("questionText").textContent = q.text;
   document.getElementById("axisHint").textContent = `Eixo: ${q.axisName}`;
 
-  const pct = ((state.qIndex) / (QUESTION_FLOW.length - 1)) * 100;
+  const pct = (currentQuestion / QUESTION_FLOW.length) * 100;
   const bar = document.getElementById("quizProgressBar");
   bar.style.width = `${clamp(pct, 0, 100)}%`;
 
   const progress = document.querySelector("[role='progressbar']");
-  progress.setAttribute("aria-valuenow", String(state.qIndex));
+  progress.setAttribute("aria-valuenow", String(currentQuestion));
+  progress.setAttribute("aria-valuetext", `Pergunta ${currentQuestion} de ${QUESTION_FLOW.length}`);
 
   const selected = state.answers[q.questionId];
   renderLikertOptions(selected);
@@ -759,6 +764,12 @@ async function copySummary() {
 // ---------------------------
 
 function init() {
+  const progress = document.querySelector("[role='progressbar']");
+  progress.setAttribute("aria-valuemin", "1");
+  progress.setAttribute("aria-valuemax", String(QUESTION_FLOW.length));
+  progress.setAttribute("aria-valuenow", "1");
+  progress.setAttribute("aria-valuetext", `Pergunta 1 de ${QUESTION_FLOW.length}`);
+
   // Se tiver um resultado salvo, habilita o botão "Ver último resultado"
   const last = loadLastResult();
   const btnViewLast = document.getElementById("btnViewLast");
@@ -790,6 +801,8 @@ function init() {
       goNext();
     }
   });
+
+  setScreen("start");
 }
 
 // Sobe a aplicação quando o DOM estiver pronto
